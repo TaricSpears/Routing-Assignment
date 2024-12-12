@@ -28,7 +28,7 @@ class Node:
     def print_routing_table(self):
         # Stampa la tabella di routing in un formato leggibile
         print(f"Routing Table for Node {self.name}")
-        print("Destination | Cost | Next Hop")
+        print("Destination - Cost - Next Hop")
         for dest, (cost, next_hop) in sorted(self.routing_table.items()):
             print(f"{dest:^11} | {cost:^4} | {next_hop:^8}")
         print("-" * 30)
@@ -56,9 +56,8 @@ def initialize_network_from_file(filename):
 
 def simulate_routing(nodes, max_iterations=10):
     # Simula l'esecuzione del protocollo Distance Vector Routing
-    print("Inizio simulazione del protocollo Distance Vector Routing...")
     for iteration in range(max_iterations):
-        print(f"\n=== Iterazione {iteration + 1} ===")
+        print(f"\n Iteration {iteration + 1} :")
         updates = 0
         for node in nodes:
             # Ogni nodo tenta di aggiornare la propria tabella di routing
@@ -71,11 +70,11 @@ def simulate_routing(nodes, max_iterations=10):
 
         # Se nessun nodo ha aggiornato la propria tabella, la rete ha raggiunto la convergenza
         if updates == 0:
-            print("Convergenza raggiunta!")
+            print("Network has converged.")
             break
     else:
         # Se il numero massimo di iterazioni è raggiunto, la rete potrebbe non essere stabile
-        print("Massimo numero di iterazioni raggiunto, la rete potrebbe non essere stabile.")
+        print("Network may not have converged.")
 
 
 if __name__ == "__main__":
